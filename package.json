@@ -1,0 +1,15 @@
+{
+  "name": "gerber-server",
+  "version": "1.0.0",
+  "description": "convert gerber file to svg",
+  "main": "index.js",
+  "scripts": {
+    "test": "start"
+  },
+  "author": "Tudc",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "whats-that-gerber": "^4.2.2"
+  }
+}

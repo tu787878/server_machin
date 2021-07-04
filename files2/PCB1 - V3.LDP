@@ -1,0 +1,3 @@
+Layer Pairs Export File for PCB: F:\HOC VE MACH\Projects\iNut 4 Relay\PCB1 - V3.PcbDoc
+LayersSetName=Top_Bot_Thru_Holes|DrillFile=pcb1 - v3-roundholes.txt|DrillLayers=gtl,gbl
+LayersSetName=Top_Bot_Slot_Holes|DrillFile=pcb1 - v3-slotholes.txt|DrillLayers=gtl,gbl
