@@ -80,12 +80,16 @@ app.post(api + 'uploadFile', function (req, res, next) {
 			file_name = res.req.file.filename;
 			let id_file = file_name.split('.').slice(0, -1).join('.');
 			let file_folder = "resources/uploads/" + file_name.split('.').slice(0, -1).join('.');
-			console.log('The folder name is ' + file_folder);
+			console.log('The folder name is ' + path.resolve(file_folder));
 			file_name = "resources/uploads/" + file_name;
+			console.log(file_name);
 			//console.log(path.resolve(file_folder));
 			extract(file_name, { dir: path.resolve(file_folder), onEntry: (entry, zipfile) => {
-				entry.fileName = entry.fileName.split("/")[1];
-				
+				if(entry.fileName.indexOf('/') > -1){
+					entry.fileName = entry.fileName.split("/")[1];
+				}
+				//
+				console.log(entry.fileName);
 			}}, function (err) {
 				console.log(err);
 				res.json({
@@ -119,7 +123,8 @@ app.post(api + 'uploadFile', function (req, res, next) {
 							data: null
 						});
 					});
-			}).catch(() => {
+			}).catch((err) => {
+				console.log(err);
 				res.json({
 					status: 0,
 					message: "Chỉ hỗ trợ file zip.",
@@ -161,8 +166,9 @@ app.get(api + 'test-svg/:fileid', (req, res, next) => {
 });
 
 const readFilePromise = (folder) => {
+	console.log("test ", folder);
 	const directoryPath = path.join(__dirname, folder);
-	console.log(directoryPath);
+	//console.log(directoryPath);
 
 	return new Promise((resolve, reject) => {
 		fs.readdir(directoryPath, function (err, files) {
@@ -172,7 +178,7 @@ const readFilePromise = (folder) => {
 				return;
 			}
 
-			console.log(files);
+			//console.log(files);
 			//listing all files using forEach
 			files.forEach(function (file) {
 				// Do whatever you want to do with the file
